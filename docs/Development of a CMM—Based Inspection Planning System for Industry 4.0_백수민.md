@@ -1,3 +1,5 @@
+# Development of a CMM—Based Inspection Planning System for Industry 4.0
+
 # **요약**
 Industry 4.0 는 제조 및 제조 측정 영역에서 사물인터넷과 클라우드 컴퓨팅 기술을 활용해 업그레이드 된 스마트 공장을 조성하는 것을 목표로, 변화하는 요구 사항을 실시간으로 대응하는 산업의 디지털 전환을 위한 새로운 프로세스
 
