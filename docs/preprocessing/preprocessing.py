@@ -116,7 +116,7 @@ def extract_dataframe_from_file(file_path):
     return df
 
 if __name__ == "__main__":
-    # 현재 디렉토리(드라이브에 있는 datasets 다운 받아서 저장한 디렉토리)
+    ############### 현재 디렉토리(드라이브에 있는 datasets 다운 받아서 저장한 디렉토리) ###############
     dataset_path = os.getcwd()
     data_list = os.listdir(dataset_path)
 
