@@ -116,41 +116,47 @@ def extract_dataframe_from_file(file_path):
     return df
 
 if __name__ == "__main__":
-    ############### 현재 디렉토리(드라이브에 있는 datasets 다운 받아서 저장한 디렉토리) ###############
-    dataset_path = os.getcwd()
-    data_list = os.listdir(dataset_path)
+    # 현재 디렉토리(드라이브에 있는 datasets 다운 받아서 저장한 디렉토리)
+    data_path = os.getcwd()
+    print(data_path)
+    data_list = os.listdir(data_path)
+    all_ex_files = list
+
 
     # 파일 목록 반복
     for file_name in data_list:
         if file_name.endswith(".zip"):
             # zip 파일 열기
-            with zipfile.ZipFile(os.path.join(dataset_path, file_name), 'r') as zip_ref:
+            with zipfile.ZipFile(os.path.join(data_path, file_name), 'r') as zip_ref:
                 # 모든 파일 압축 해제
-                zip_ref.extractall(dataset_path)
+                zip_ref.extractall(data_path)
                 # 압축 해제된 파일 목록 가져오기
                 extracted_files = zip_ref.namelist()
                 # 압축 해제 후 파일 수 확인
                 num_files_after = len(extracted_files)
-                print(extracted_files)
+                print(extracted_files)  ###########################['datasets/small_data.zip', 'datasets/large_data.zip']
 
                 dataset_path = os.getcwd()+"\datasets"
-                data_list = os.listdir(dataset_path)
-                print(data_list)
+                dataset_list = os.listdir(dataset_path)
+                print(dataset_list)    ############################['large_data.zip', 'small_data.zip']
 
-                for file_name in data_list:
+                for file_name in dataset_list:
+                    print(file_name)
                     if file_name.endswith(".zip"):
                         with zipfile.ZipFile(os.path.join(dataset_path, file_name), 'r') as zip_ref:
                             # 모든 파일 압축 해제
-                            zip_ref.extractall(dataset_path)
+                            info = zip_ref.infolist()
+                            for i in info :
+                                i.filename = i.filename.encode('cp437').decode('euc-kr')
+                                zip_ref.extract(i)
+
                             # 압축 해제된 파일 목록 가져오기
                             extracted_files = zip_ref.namelist()
-                            # 압축 해제 후 파일 수 확인
                             num_files_after = len(extracted_files)
-                            # 파일 처리(txt -> csv)
+                            # print(num_files_after)
                             for extracted_file in extracted_files:
-                                if extracted_file.endswith('.txt'):
-                                    # txt -> csv
-                                    df_test = extract_dataframe_from_file(os.path.join(dataset_path, extracted_file))
-                                    # DataFrame을 csv로 저장
-                                    df_test.to_csv(os.path.join(dataset_path, os.path.splitext(extracted_file)[0] + ".csv"), index=False, encoding='cp949')
-                                    os.remove
+                                df_test = extract_dataframe_from_file(os.path.join(data_path, extracted_file))
+                                df_test.to_csv(os.path.join(data_path, os.path.splitext(extracted_file)[0] + ".csv"), index=False, encoding='cp949')
+                                os.remove
+                            data_list = os.listdir(data_path)
+                            print(data_list)
