@@ -17,5 +17,5 @@ small_data 중에 아래의 txt 파일이 csv 파일 변환하는데 오류 발�
 - 코드 실행하면 datasets 파일의 small_data.zip(11개), large_data.zip(137개) 다 합쳐져서 압축 해제 됨.
 - 압축이 완료 된 파일은 csv 파일이 txt 파일 위에 생성됨.
 
-한글깨짐 오류 해결
+## 한글깨짐 오류 해결
 ![error_solve](https://github.com/Prcnsi/Deep-learning-based_CMM_Anomaly-detection/assets/87318054/6d30503a-4237-4c3b-bc43-9bbbe9298319)
